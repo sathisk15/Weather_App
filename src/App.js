@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
-
+// import day from './images/bluesky.png'
+// import night from './images/darksky.png'
+import { ImLocation } from 'react-icons/im';
+// import { FaLocationArrow } from 'react-icons/fa';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <div className="row d-flex justify-content-center">
+          <div className="col-10 col-sm-10 col-md-8 col-lg-6">
+            <div className="search-box">
+              <input
+                type="text"
+                aria-label="Search"
+                placeholder="Enter location"
+              />
+              <button className="location">
+                <ImLocation />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
