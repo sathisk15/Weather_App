@@ -8,26 +8,27 @@ import SearchResults from './SearchResults';
 const Searchbox = () => {
   const [location, setLocation] = useState('');
   const [cities, setCities] = useState([]);
-  const [cityData, setCityData] = useState({});
+  const [toggleResults, setToggleResults] = useState(false);
   const handleSearch = async (e) => {
     setLocation(e.target.value);
+    setToggleResults(true);
   };
   useEffect(() => {
     const timer = setTimeout(async () => {
-      if (location !== '') {
+      if (toggleResults) {
         let { data } = await axios.get(
           `${Geo_Code_API_URL}/cities?namePrefix=${location}&limit=10`,
           Geo_Code_options
         );
         setCities(data.data);
       }
-    }, 1000);
+    }, 500);
     return () => clearTimeout(timer);
-  }, [location]);
+  }, [location, toggleResults]);
   const clearCities = (city) => {
-    setCities([]);
-    setLocation(city.city)
-    setCityData(city);
+    setToggleResults(false);
+    console.log(city);
+    setLocation(city.city);
   };
   const handleLocation = () => {};
   return (
@@ -49,7 +50,7 @@ const Searchbox = () => {
               <ImLocation />
             </div>
           </div>
-          {cities.length > 0 && location !== '' && (
+          {toggleResults && (
             <SearchResults cities={cities} clearCities={clearCities} />
           )}
         </div>
