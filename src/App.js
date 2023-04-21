@@ -1,11 +1,23 @@
 import './App.css';
 import Searchbox from './components/Searchbox';
 import CurrentWeatherBox from './components/CurrentWeatherBox';
+import { useState } from 'react';
+
 function App() {
+  const [cityData, setCityData] = useState();
+  const getCityDetails = (data) => {
+    setCityData(data);
+  };
+  console.log(cityData);
   return (
     <div className="App">
-      <Searchbox />
-      <CurrentWeatherBox />
+      <h1 className='mt-6'>Weather App</h1>
+      <Searchbox getCityDetails={getCityDetails} />
+      {cityData && (
+        <CurrentWeatherBox
+          weatherData={{ main: cityData.main, weather: cityData.weather }}
+        />
+      )}
     </div>
   );
 }

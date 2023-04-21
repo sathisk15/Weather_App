@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ImLocation } from 'react-icons/im';
 import { Geo_Code_options, Geo_Code_API_URL } from '../Utils/GeocodeAPI';
+import { weatherAPI, weatherAPIKey } from '../Utils/GeocodeAPI';
 import SearchResults from './SearchResults';
 
-const Searchbox = () => {
+const Searchbox = ({getCityDetails}) => {
   const [location, setLocation] = useState('');
   const [cities, setCities] = useState([]);
   const [toggleResults, setToggleResults] = useState(false);
@@ -27,7 +28,18 @@ const Searchbox = () => {
   }, [location, toggleResults]);
   const clearCities = (city) => {
     setToggleResults(false);
-    console.log(city);
+    async function fetchData() {
+      if (city) {
+        let { data } = await axios.get(
+          `${weatherAPI}/weather?lat=${city.latitude.toFixed(
+            4
+          )}&lon=${city.longitude.toFixed(4)}&appid=${weatherAPIKey}`
+        );
+        getCityDetails(data)
+        console.log("Test Weather API Call")
+      }
+    }
+    fetchData();
     setLocation(city.city);
   };
   const handleLocation = () => {};

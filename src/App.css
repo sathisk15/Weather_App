@@ -64,8 +64,10 @@ input:focus {
   color: #fff;
 }
 
-.weather-box .icon {
-  font-size: 60px;
+.weather-box .icon img{
+  /* font-size: 150px; */
+  width: 200px;
+  height: 200px;
 }
 .weather-box .temprature {
   font-size: 60px;
