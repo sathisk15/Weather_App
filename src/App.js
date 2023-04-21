@@ -11,7 +11,7 @@ function App() {
   console.log(cityData);
   return (
     <div className="App">
-      <h1 className='mt-6'>Weather App</h1>
+      <h1 className='apptitle'>Weather App</h1>
       <Searchbox getCityDetails={getCityDetails} />
       {cityData && (
         <CurrentWeatherBox

@@ -1,4 +1,3 @@
-
 const CurrentWeatherBox = ({ weatherData }) => {
   const FtoC = (d) => (d - 273.15).toFixed(0);
   return (
@@ -13,23 +12,26 @@ const CurrentWeatherBox = ({ weatherData }) => {
                   alt=""
                 />
               </div>
-              <div className="temprature">
+              <div className="temperature">
                 {FtoC(weatherData.main.temp)}&deg;C
               </div>
               <div className="climate">
                 {weatherData.weather[0].description}
               </div>
-              <div className="FeelsLike">
-                {`Feels like: ${FtoC(weatherData.main.feels_like)} `}&deg;C
+              <div className="temperatureRange">
+                <div className="high">
+                  <p>High</p>
+                  <p>{FtoC(weatherData.main.temp_max)} &deg;C</p>
+                </div>
+                <div className="feelslike">
+                  <p>Feels like</p>
+                  <p>{FtoC(weatherData.main.feels_like)} &deg;C</p>
+                </div>
+                <div className="low">
+                  <p>Low</p>
+                  <p>{FtoC(weatherData.main.temp_min)} &deg;C</p>
+                </div>
               </div>
-              <span className="temp">
-                <p className="high">
-                  {`H: ${FtoC(weatherData.main.temp_max)} `}&deg;C
-                </p>
-                <p className="low">
-                  {`L: ${FtoC(weatherData.main.temp_min)} `}&deg;C
-                </p>
-              </span>
             </div>
           )}
         </div>
