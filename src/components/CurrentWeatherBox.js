@@ -1,5 +1,6 @@
+import { weatherImgLink } from '../Utils/API';
+import {KtoC} from '../Utils/helperFunctions'
 const CurrentWeatherBox = ({ weatherData }) => {
-  const KtoC = (d) => (d - 273.15).toFixed(0);
   return (
     <div className="container">
       <div className="row d-flex justify-content-center">
@@ -8,7 +9,7 @@ const CurrentWeatherBox = ({ weatherData }) => {
             <div className="weather-box">
               <div className="icon">
                 <img
-                  src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+                  src={`${weatherImgLink}/${weatherData.weather[0].icon}@2x.png`}
                   alt=""
                 />
               </div>

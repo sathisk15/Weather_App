@@ -62,7 +62,7 @@ input:focus {
   color: #fff;
 }
 .weather-box .icon {
-  width: 120px;
+  width: 150px;
   height: 120px;
   overflow: hidden;
   display: flex;

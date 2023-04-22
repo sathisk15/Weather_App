@@ -1,7 +1,7 @@
 import React from 'react';
-import { weatherImgLink } from '../Utils/GeocodeAPI';
+import { KtoC } from '../Utils/helperFunctions';
+import { weatherImgLink } from '../Utils/API';
 const HourlyForcast = ({ temp, img, time }) => {
-  const KtoC = (d) => (d - 273.15).toFixed(0);
   let s = new Date(time * 1000);
   s = s.getHours();
   return (

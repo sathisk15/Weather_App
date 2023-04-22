@@ -2,8 +2,14 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ImLocation } from 'react-icons/im';
-import { Geo_Code_options, Geo_Code_API_URL } from '../Utils/GeocodeAPI';
-import { weatherAPI, weatherAPIKey, weatherForcastAPI } from '../Utils/GeocodeAPI';
+
+import {
+  weatherAPI,
+  Geo_Code_options,
+  Geo_Code_API_URL,
+  weatherAPIKey,
+  weatherForcastAPI,
+} from '../Utils/API';
 import SearchResults from './SearchResults';
 
 const Searchbox = ({ getWeatherData, getForecastData }) => {
@@ -26,29 +32,35 @@ const Searchbox = ({ getWeatherData, getForecastData }) => {
     }, 500);
     return () => clearTimeout(timer);
   }, [location, toggleResults]);
+  async function fetchWeatherData(city) {
+    let { latitude, longitude } = city;
+    let weatherData = await axios.get(
+      `${weatherAPI}/weather?lat=${latitude.toFixed(4)}&lon=${longitude.toFixed(
+        4
+      )}&appid=${weatherAPIKey}`
+    );
+    let forecastData = await axios.get(
+      `${weatherForcastAPI}/forecast?lat=${latitude.toFixed(
+        4
+      )}&lon=${longitude.toFixed(4)}&appid=${weatherAPIKey}`
+    );
+    getWeatherData(weatherData.data);
+    getForecastData(forecastData.data.list.slice(0, 8));
+  }
   const clearCities = (city) => {
     setToggleResults(false);
-    async function fetchData() {
-      if (city) {
-        let weatherData = await axios.get(
-          `${weatherAPI}/weather?lat=${city.latitude.toFixed(
-            4
-          )}&lon=${city.longitude.toFixed(4)}&appid=${weatherAPIKey}`
-        );
-        getWeatherData(weatherData.data);
-        let forecastData = await axios.get(
-          `${weatherForcastAPI}/forecast?lat=${city.latitude.toFixed(
-            4
-          )}&lon=${city.longitude.toFixed(4)}&appid=${weatherAPIKey}`
-        );
-        getForecastData(forecastData.data.list.slice(0,8));
-      }
-      console.log('WEATHER API CALL COUNT');
-    }
-    fetchData();
+    fetchWeatherData(city);
     setLocation(city.city);
   };
-  const handleLocation = () => {};
+  const handleLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      fetchWeatherData({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      });
+      setLocation('Your Location');
+    });
+  };
   return (
     <div className="container">
       <div className="row d-flex justify-content-center">
