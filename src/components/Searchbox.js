@@ -2,14 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ImLocation } from 'react-icons/im';
-
-import {
-  weatherAPI,
-  Geo_Code_options,
-  Geo_Code_API_URL,
-  weatherAPIKey,
-  weatherForcastAPI,
-} from '../Utils/API';
+import { fetchWeatherData } from '../Utils/helperFunctions';
+import { Geo_Code_options, Geo_Code_API_URL } from '../Utils/API';
 import SearchResults from './SearchResults';
 
 const Searchbox = ({ getWeatherData, getForecastData }) => {
@@ -32,32 +26,19 @@ const Searchbox = ({ getWeatherData, getForecastData }) => {
     }, 500);
     return () => clearTimeout(timer);
   }, [location, toggleResults]);
-  async function fetchWeatherData(city) {
-    let { latitude, longitude } = city;
-    let weatherData = await axios.get(
-      `${weatherAPI}/weather?lat=${latitude.toFixed(4)}&lon=${longitude.toFixed(
-        4
-      )}&appid=${weatherAPIKey}`
-    );
-    let forecastData = await axios.get(
-      `${weatherForcastAPI}/forecast?lat=${latitude.toFixed(
-        4
-      )}&lon=${longitude.toFixed(4)}&appid=${weatherAPIKey}`
-    );
-    getWeatherData(weatherData.data);
-    getForecastData(forecastData.data.list.slice(0, 8));
-  }
+
   const clearCities = (city) => {
     setToggleResults(false);
-    fetchWeatherData(city);
+    fetchWeatherData(city, getWeatherData, getForecastData);
     setLocation(city.city);
   };
   const handleLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
-      fetchWeatherData({
+      let city = {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
-      });
+      };
+      fetchWeatherData(city, getWeatherData, getForecastData);
       setLocation('Your Location');
     });
   };
