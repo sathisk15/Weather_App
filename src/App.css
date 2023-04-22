@@ -17,9 +17,9 @@
   flex-direction: column;
   align-items: center;
 }
-.apptitle{
+.apptitle {
   margin-top: 20px;
-  color: #FFF;
+  color: #fff;
 }
 .search-box {
   width: 100%;
@@ -32,7 +32,7 @@
 }
 
 .search-box .location {
-  background-color: #FFF;
+  background-color: #fff;
   border: none;
   width: 10%;
   height: 100%;
@@ -67,7 +67,7 @@ input:focus {
   color: #fff;
 }
 
-.weather-box .icon img{
+.weather-box .icon img {
   width: 150px;
   height: 150px;
   transform: scale(1.5);
@@ -77,13 +77,15 @@ input:focus {
   font-size: 60px;
 }
 
-.temperatureRange{
+.temperatureRange {
   width: 100%;
   display: flex;
   justify-content: center;
   margin: 10px 0 0 0;
 }
-.weather-box .temperatureRange .feelslike, .high, .low{
+.weather-box .temperatureRange .feelslike,
+.high,
+.low {
   margin: 0 20px;
   display: flex;
   flex-direction: column;
@@ -91,12 +93,12 @@ input:focus {
   align-items: center;
 }
 .weather-box .temperatureRange p {
-margin-bottom: 2px;
+  margin-bottom: 2px;
 }
 .weather-box .climate {
-text-transform: uppercase;
-font-weight: bold;
-font-size: 1.3em;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.3em;
 }
 
 .search-results {
@@ -111,4 +113,31 @@ font-size: 1.3em;
   width: 100%;
   padding: 5px 30px;
   cursor: pointer;
+}
+
+/* WeatherForcast */
+
+.WeatherForcast {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.hourBox {
+  display: flex;
+  width: 15%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hourBox{
+  color: #fff;
+  margin: 10px 0;
+}
+.hourBox p{
+  margin: 0;
+}
+.hourBox img {
+  width: 50px;
 }
