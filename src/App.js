@@ -5,21 +5,27 @@ import WeatherForcast from './components/WeatherForcast';
 import { useState } from 'react';
 
 function App() {
-  const [cityData, setCityData] = useState();
-  const getCityDetails = (data) => {
-    setCityData(data);
+  const [weatherData, setWeatherData] = useState();
+  const [forecastData, setForecastData] = useState();
+  const getWeatherData = (data) => {
+    setWeatherData(data);
   };
-  console.log(cityData);
+  const getForecastData = (data) => {
+    setForecastData(data);
+  };
   return (
     <div className="App">
-      <h1 className='apptitle'>Weather App</h1>
-      <Searchbox getCityDetails={getCityDetails} />
-      {cityData && (
+      <h1 className="apptitle">Weather App</h1>
+      <Searchbox
+        getWeatherData={getWeatherData}
+        getForecastData={getForecastData}
+      />
+      {weatherData && (
         <CurrentWeatherBox
-          weatherData={{ main: cityData.main, weather: cityData.weather }}
+          weatherData={{ main: weatherData.main, weather: weatherData.weather }}
         />
       )}
-      <WeatherForcast />
+      {forecastData && <WeatherForcast forecastData={forecastData}/>}
     </div>
   );
 }

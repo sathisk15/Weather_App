@@ -8,11 +8,6 @@
   width: 100vw;
   height: 100vh;
   background: rgb(10, 102, 194);
-  background: linear-gradient(
-    234deg,
-    rgba(10, 102, 194, 1) 0%,
-    rgba(50, 9, 121, 1) 100%
-  );
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,12 +61,16 @@ input:focus {
   padding: 10px;
   color: #fff;
 }
-
+.weather-box .icon {
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .weather-box .icon img {
-  width: 150px;
-  height: 150px;
-  transform: scale(1.5);
-  z-index: -99;
+  transform: scale(2);
 }
 .weather-box .temperature {
   font-size: 60px;
@@ -120,22 +119,23 @@ input:focus {
 .WeatherForcast {
   width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 10px;
+  overflow: hidden;
+  overflow-x: auto;
+  padding: 10px 0;
 }
 .hourBox {
-  display: flex;
   width: 15%;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.hourBox{
+  margin: 0 5px;
   color: #fff;
-  margin: 10px 0;
 }
-.hourBox p{
+
+.hourBox p {
   margin: 0;
 }
 .hourBox img {

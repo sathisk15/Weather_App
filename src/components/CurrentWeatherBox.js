@@ -1,5 +1,5 @@
 const CurrentWeatherBox = ({ weatherData }) => {
-  const FtoC = (d) => (d - 273.15).toFixed(0);
+  const KtoC = (d) => (d - 273.15).toFixed(0);
   return (
     <div className="container">
       <div className="row d-flex justify-content-center">
@@ -13,7 +13,7 @@ const CurrentWeatherBox = ({ weatherData }) => {
                 />
               </div>
               <div className="temperature">
-                {FtoC(weatherData.main.temp)}&deg;C
+                {KtoC(weatherData.main.temp)}&deg;C
               </div>
               <div className="climate">
                 {weatherData.weather[0].description}
@@ -21,15 +21,15 @@ const CurrentWeatherBox = ({ weatherData }) => {
               <div className="temperatureRange">
                 <div className="high">
                   <p>High</p>
-                  <p>{FtoC(weatherData.main.temp_max)} &deg;C</p>
+                  <p>{KtoC(weatherData.main.temp_max)} &deg;C</p>
                 </div>
                 <div className="feelslike">
                   <p>Feels like</p>
-                  <p>{FtoC(weatherData.main.feels_like)} &deg;C</p>
+                  <p>{KtoC(weatherData.main.feels_like)} &deg;C</p>
                 </div>
                 <div className="low">
                   <p>Low</p>
-                  <p>{FtoC(weatherData.main.temp_min)} &deg;C</p>
+                  <p>{KtoC(weatherData.main.temp_min)} &deg;C</p>
                 </div>
               </div>
             </div>
