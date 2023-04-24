@@ -2,6 +2,7 @@ import './App.css';
 import Searchbox from './components/Searchbox';
 import CurrentWeatherBox from './components/CurrentWeatherBox';
 import WeatherForcast from './components/WeatherForcast';
+import AdditionalInfo from './components/AdditionalInfo';
 import { useState } from 'react';
 
 function App() {
@@ -25,7 +26,17 @@ function App() {
           weatherData={{ main: weatherData.main, weather: weatherData.weather }}
         />
       )}
-      {forecastData && <WeatherForcast forecastData={forecastData}/>}
+      {forecastData && <WeatherForcast forecastData={forecastData} />}
+      {weatherData && (
+        <AdditionalInfo
+          data={{
+            humidity: weatherData.main.humidity,
+            pressure: weatherData.main.pressure,
+            wind: { speed: weatherData.wind.speed, deg: weatherData.wind.deg },
+            sys: weatherData.sys,
+          }}
+        />
+      )}
     </div>
   );
 }

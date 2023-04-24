@@ -18,3 +18,9 @@ export async function fetchWeatherData(city, getWeatherData, getForecastData) {
   getWeatherData(weatherData.data);
   getForecastData(forecastData.data.list.slice(0, 8));
 }
+
+export const getTime = (time) =>{
+  time = new Date(time * 1000);
+  time = time.getHours();
+  return `${time > 12 ? time - 12 : time} ${time > 12 ? 'PM' : 'AM'}`
+}

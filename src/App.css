@@ -2,16 +2,23 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: none;
+  overflow-x: none;
+}
+body {
+  background: rgb(10, 102, 194);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .App {
   width: 100vw;
-  height: 100vh;
-  background: rgb(10, 102, 194);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding-bottom: 10px;
 }
+
 .apptitle {
   margin-top: 20px;
   color: #fff;
@@ -19,7 +26,6 @@
 .search-box {
   width: 100%;
   height: 50px;
-  margin-top: 20px;
   padding-top: 20px;
   display: flex;
   justify-content: center;
@@ -140,4 +146,20 @@ input:focus {
 }
 .hourBox img {
   width: 50px;
+}
+
+/* additionalInfo */
+
+.additionalInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  color: #fff;
+}
+
+.additionalInfo p {
+  margin-bottom: 0;
+  text-align: center;
+  margin-top: 10px;
 }
